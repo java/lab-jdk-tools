@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/src/test/java"/>
+	</contentEntry>
+	<lib name="JUnit5.8.1" scope="TEST">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar!/"/>
+	</lib>
+	<levels>
+		<level name="lib" value="project"/>
+	</levels>
+</component>

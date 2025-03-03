@@ -35,11 +35,49 @@ Start by cloning the code from this repo:
 
 ```shell
 git clone https://github.com/java/lab-jdk-tools.git
+git checkout eclipse
 ```
 
-Each module contains its own README.md file, with the instructions and hints on how to work on the different parts of the lab. They are all independent, so you can choose the one you want to work on.
+Each module contains its own `README.md` file, with the instructions and hints on how to work on the different parts of the lab. They are all independent, so you can choose the one you want to work on.
 The project was generated with IntelliJ's build system, but below are additional steps in case you decide to use a different code editor.
 
-In case you wish to work in Eclipse IDE, please use [eclipse](https://github.com/java/lab-jdk-tools/blob/eclipse/README.md) branch instructions.
+### Eclipse IDE Setup
+<details>
+<summary>Click to expand</summary>
+
+#### Import as a General Java Project
+
+1. Open Eclipse.
+2. Go to _File > New > Java Project_.
+3. Enter the same project name (`lab-jdk-tools`).
+4. Uncheck **"Use default location"** and browse to the `lab-jdk-tools` project folder.
+5. Click Next and Finish. 
+
+To fix missing libraries in each module follow these steps: 
+1. Right-click the project and select Properties_.
+2. Go to _Java Build Path > Libraries_.
+3. Click **"Add External JARs..."** and select JARs from the _lib/_ folder.
+4. Click Apply and Close. 
+
+Make sure that a _src/resources/_ folder from a module is recognized:
+
+1. Right-click _resources/ > Build Path > Use as Source Folder_.
+
+#### Verify and Run the Project in Eclipse
+
+Once you imported the project: 
+
+1. Check _Source Folders → src/main/java_ and _src/resources/_ are correctly recognized.
+2. Check Dependencies → JAR files from lib/ should be in the **Java Build Path**.
+
+#### Configure Eclipse Output Folder (Optional)
+
+By default, Eclipse compiles classes into _bin/_, but IntelliJ uses _out/_. To unify this:
+
+1. Right-click the _module > Properties > Java Build Path_.
+2. Go to **"Source"** tab and change **"Default output folder"** to out/production/<module_name>.
+3. Click Apply and Close.
+
+</details>
 
 Now [let's get started](A_bday_java)!

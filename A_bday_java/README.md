@@ -5,11 +5,11 @@
 Here's a breakdown of the different project components:
 
 * `src/main/java`: The source code for the project, organized by package:
-    * `eu.ammbra.bday.Organizer.java`: The main entry point of the application, possibly responsible for coordinating the overall flow of the program.
-    * `eu.ammbra.bday.details`: A package containing domain model classes. These classes represent entities involved in birthday celebrations, such as cakes, parties, and people attending them.
-    * `eu.ammbra.bday.handlers`: A package containing classes responsible for handling specific tasks. 
-    * `eu.ammbra.bday.operations`: A package containing classes responsible for handling the operational side of parties.
-    * `eu.ammbra.bday.store`: A package containing classes responsible for interacting with data from files.
+  * `eu.ammbra.bday.Organizer.java`: The main entry point of the application, possibly responsible for coordinating the overall flow of the program.
+  * `eu.ammbra.bday.details`: A package containing domain model classes. These classes represent entities involved in birthday celebrations, such as cakes, parties, and people attending them.
+  * `eu.ammbra.bday.handlers`: A package containing classes responsible for handling specific tasks.
+  * `eu.ammbra.bday.operations`: A package containing classes responsible for handling the operational side of parties.
+  * `eu.ammbra.bday.store`: A package containing classes responsible for interacting with data from files.
 * `src/main/resources/store/events.json`: A resource file containing sample event data in JSON format.
 * `src/test/java`: The source code for unit tests and integration tests.
 
@@ -25,7 +25,7 @@ This activity relies on you to execute the following steps:
 1. Open a terminal window in the `lab-jdk-tools/A_bday_java` folder. You can use the terminal of your IDE/code editor.
 2. Check that $JAVA_HOME is properly set by trying `echo $JAVA_HOME`.
 3. Inside the terminal, execute the `java` command to launch `Organizer` class from `src/main/java/eu/ammbra/bday/`.
-Pay attention to the following:
+   Pay attention to the following:
 
 * classpath libraries located in `lab-jdk-tools/lib` folder.
 * the project uses preview features so do not forget to enable those via `--enable-preview`
@@ -52,5 +52,3 @@ This activity requires you to:
 &rarr; [Click to see the solution](SOLUTION.md#lab-activity-no-2-use-the-java-command-line-argument-files)
 
 Next step is to [create some documentation](../B_bday_javadoc/README.md)!
-
-

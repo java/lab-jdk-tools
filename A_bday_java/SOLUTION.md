@@ -6,15 +6,7 @@
 <summary>Click to expand</summary>
 
 ```shell
-
-# Unix and macOS compatible command
-
-java --enable-preview -cp "../lib/*" src/main/java/eu/ammbra/bday/Organizer.java
-
-# Windows compatible command
-
 java --enable-preview -cp "..\lib\*" src\main\java\eu\ammbra\bday\Organizer.java
-
 ```
 
 </details>
