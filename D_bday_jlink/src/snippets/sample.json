@@ -1,0 +1,13 @@
+[
+  {
+    "id":1,
+    "person":{
+      "firstName":"Alice",
+      "lastName":"Cooper",
+      "date":"2025-03-15"
+    },
+    "flavor":"Chocolate",
+    "location":"Aventura Park",
+    "attendees":100
+  }
+]

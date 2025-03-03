@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/A_bday_java/A_bday_java.iml" filepath="$PROJECT_DIR$/A_bday_java/A_bday_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/B_bday_javadoc/B_bday_javadoc.iml" filepath="$PROJECT_DIR$/B_bday_javadoc/B_bday_javadoc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/C_bday_jwebserver/C_bday_jwebserver.iml" filepath="$PROJECT_DIR$/C_bday_jwebserver/C_bday_jwebserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D_bday_jlink/D_bday_jlink.iml" filepath="$PROJECT_DIR$/D_bday_jlink/D_bday_jlink.iml" />
+      <module fileurl="file://$PROJECT_DIR$/E_bday_jfr/E_bday_jfr.iml" filepath="$PROJECT_DIR$/E_bday_jfr/E_bday_jfr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab-jdk-tools.iml" filepath="$PROJECT_DIR$/lab-jdk-tools.iml" />
+    </modules>
+  </component>
+</project>

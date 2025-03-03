@@ -1,0 +1,35 @@
+# Step 1: Build the custom Java runtime
+FROM container-registry.oracle.com/java/openjdk:23-oraclelinux9 as jre-build
+
+RUN $JAVA_HOME/bin/jlink \
+--add-modules jdk.compiler,jdk.httpserver \
+--no-man-pages \
+--no-header-files \
+--compress=zip-9 \
+--output javaruntime
+
+# Step 2: Create the runtime environment
+FROM oraclelinux:9-slim
+
+# Set Java environment variables
+ENV JAVA_HOME /usr/java/openjdk-23
+ENV PATH $JAVA_HOME/bin:$PATH
+
+# Copy the custom Java runtime from the first stage
+COPY --from=jre-build /javaruntime $JAVA_HOME
+
+# Set the working directory
+WORKDIR /web
+
+# Copy static files into the container
+COPY ./static /web
+
+# Create a non-root user and switch to it
+RUN groupadd -r appuser && useradd -r -g appuser appuser && chown -R appuser:appuser /web
+USER appuser
+
+# Expose the HTTP port
+EXPOSE 8002
+
+# Start jwebserver with proper settings
+ENTRYPOINT <ADD_COMMAND>

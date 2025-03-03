@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center;
+    margin: 50px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}

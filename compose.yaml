@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  organizer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: organizer
+    volumes:
+      - ./recordings:/recordings
+    ports:
+      - 8081:8081
+    networks: [backing-services]
+  static:
+    build:
+      context: ./D_bday_jlink
+      dockerfile: Dockerfile.web
+    container_name: static
+    ports:
+      - 8002:8002
+    depends_on:
+      - organizer
+    volumes:
+      - ./D_bday_jlink/static:/web
+      - ./recordings:/recordings
+    networks: [ backing-services ]
+networks:
+  backing-services:
+    driver: bridge

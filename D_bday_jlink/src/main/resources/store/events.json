@@ -1,0 +1,35 @@
+[
+  {
+    "id":1,
+    "person":{
+      "firstName":"Alice",
+      "lastName":"Cooper",
+      "date":"2025-03-15"
+    },
+    "flavor":"Chocolate",
+    "location":"Aventura Park",
+    "attendees":100
+  },
+  {
+    "id":2,
+    "person":{
+      "firstName":"Bob",
+      "lastName":"Manning",
+      "date":"2025-04-20"
+    },
+    "flavor":"Vanilla",
+    "location":"Surprise Party",
+    "attendees":15
+  },
+  {
+    "id":3,
+    "person":{
+      "firstName":"Sophia",
+      "lastName":"Manning",
+      "date":"2025-05-30"
+    },
+    "flavor":"Rainbow",
+    "location":"Rainbow Fiesta",
+    "attendees":5
+  }
+]
