@@ -9,7 +9,7 @@ RUN $JAVA_HOME/bin/jlink \
        --output javaruntime
 
 # Define your base image
-FROM oraclelinux:9-slim
+FROM container-registry.oracle.com/os/oraclelinux:9-slim
 
 ENV JAVA_HOME /usr/java/openjdk-23
 ENV PATH $JAVA_HOME/bin:$PATH
