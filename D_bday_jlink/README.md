@@ -45,19 +45,19 @@ javac --enable-preview --source 23 -cp "../lib/*" @sourcefiles.txt -d out
 
 ```shell
 # unix/macOS specific command
-jdeps --multirelease 23 --class-path '../lib/*' -s out/
+jdeps --multi-release 23 --class-path '../lib/*' -s out/
 
 # Windows specific commands
-jdeps --multirelease 23 --class-path '..\lib\*' -s out\
+jdeps --multi-release 23 --class-path '..\lib\*' -s out\
 ```
 4. Observe the output of previous command and check if there are dependencies not found. In such scenarios, is best to scan recursively your files:
 
 ```shell
 # unix/macOS specific command
-jdeps --multirelease 23 --class-path '../lib/*' -recursive out/
+jdeps --multi-release 23 --class-path '../lib/*' -recursive out/
 
 # Windows specific commands
-jdeps --multirelease 23 --class-path '..\lib\*' -recursive out\
+jdeps --multi-release 23 --class-path '..\lib\*' -recursive out\
 ```
 5. To better observe the output, you can export the dependencies details as a DOT format.
 
