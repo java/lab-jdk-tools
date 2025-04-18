@@ -62,9 +62,8 @@ Let's evolve the previous scenario by integrating the client-side code.
 1. Modify the code of `C_bday_jwebserver/src/main/java/eu/ammbra/bday/Organizer.java` to handle the content inside `static` folder.
 
 ```java
-Path staticDir = Paths.get(Organizer.class.getResource("/static").toURI());
+Path staticDir = Paths.get("src", "main", "resources", "static").toAbsolutePath();
 var fileHandler = SimpleFileServer.createFileHandler(staticDir);
-//serve the static files 
 server.createContext("/", fileHandler);
 
 System.out.printf("Birthday Party Server is running at http://127.0.0.1:%d%n", port);
