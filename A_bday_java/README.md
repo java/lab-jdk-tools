@@ -13,9 +13,12 @@ Here's a breakdown of the different project components:
 * `src/main/resources/store/events.json`: A resource file containing sample event data in JSON format.
 * `src/test/java`: The source code for unit tests and integration tests.
 
-## **Lab Activity No 1**:  Launch Multiple Java Files
+Spend some time inspecting the code of this lab in order to become familiar with it. It will help you in further steps.
+Also, you may ask questions any time about the design choices for it.
 
-Since JDK 22 you can use the Java launcher to [execute source-code programs provided as multiple files](https://docs.oracle.com/en/java/javase/23/docs/specs/man/java.html#using-source-file-mode-to-launch-source-code-programs).
+## **Lab Activity No 1**: Launch Multiple Java Files
+
+Since JDK 22 you can use the Java launcher to [execute source-code programs provided as multiple files](https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html#using-source-file-mode-to-launch-source-code-programs).
 
 ```shell
 java --class-path '*' Prog1.java
@@ -37,7 +40,7 @@ This activity relies on you to execute the following steps:
 ## **Lab Activity No 2**: Use the Java Command-Line Argument Files
 
 When working with the `java` launcher, you can shorten or simplify the `java` command by using `@` argument files to specify one or more text files that contain arguments.
-The arguments can be options and class names, which are then passed to the `java` command. [This](https://docs.oracle.com/en/java/javase/23/docs/specs/man/java.html#java-command-line-argument-files) allows you to :
+The arguments can be options and class names, which are then passed to the `java` command. [This](https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html#java-command-line-argument-files) allows you to :
 
 * create `java` commands of any length on any operating system
 * for containerized applications, easily swap the content the argument files without modifying the Dockerfile.

@@ -5,30 +5,44 @@
 Here's a breakdown of the different project components:
 
 * `src/main/java`: The source code for the project, organized by package:
-    * `eu.ammbra.bday.Organizer.java`: The main entry point of the application, possibly responsible for coordinating the overall flow of the program.
-    * `eu.ammbra.bday.details`: A package containing domain model classes. These classes represent entities involved in birthday celebrations, such as cakes, parties, and people attending them.
-    * `eu.ammbra.bday.handlers`: A package containing classes responsible for handling specific tasks. 
-    * `eu.ammbra.bday.operations`: A package containing classes responsible for handling the operational side of parties.
-    * `eu.ammbra.bday.store`: A package containing classes responsible for interacting with data from files.
+  * `eu.ammbra.bday.Organizer.java`: The main entry point of the application, possibly responsible for coordinating the overall flow of the program.
+  * `eu.ammbra.bday.details`: A package containing domain model classes. These classes represent entities involved in birthday celebrations, such as cakes, parties, and people attending them.
+  * `eu.ammbra.bday.handlers`: A package containing classes responsible for handling specific tasks.
+  * `eu.ammbra.bday.operations`: A package containing classes responsible for handling the operational side of parties.
+  * `eu.ammbra.bday.store`: A package containing classes responsible for interacting with data from files.
 * `src/main/resources/store/events.json`: A resource file containing sample event data in JSON format.
 * `src/main/resources/static`: A folder holding client-side related static files.
 * `src/test/java`: The source code for unit tests and integration tests.
 * `src/snippets`: The JSON snippets folder.
 
+At any time, you can search or look on [https://dev.java/learn/jvm/tool/jwebserver/](https://dev.java/learn/jvm/tool/jwebserver/) to learn more about `jwebserver`.
 
 ## **Lab Activity No 1**: Simulate a client-server setup
 
 JDK 18 introduced the `SimpleFileServer` API and added it to the `jdk.httpserver` module. This simple web server is a minimal HTTP static file server, designed to be used for prototyping, testing, and debugging.
 
 You can run the simple web server in the command line with the `jwebserver` JDK tool.
-[Jwebserver](https://docs.oracle.com/en/java/javase/23/docs/specs/man/jwebserver.html) serves static files in a single directory hierarchy over HTTP/1.1; dynamic content and other HTTP versions are not supported. 
+[Jwebserver](https://docs.oracle.com/en/java/javase/23/docs/specs/man/jwebserver.html) serves static files in a single directory hierarchy over HTTP/1.1; dynamic content and other HTTP versions are not supported.
+
+Starting with JDK 25 the `jwebserver` tool allows configuring the directory to serve as a one specified with a relative path via the `-d` and `--directory` command line options.
+You can achieve that both when you invoke `jwebserver` an executable:
+
+```
+jwebserver --directory a/relative/path
+```
+
+or as a module:
+
+```
+java --module jdk.httpserver --directory a/relative/path
+```
 
 Often times, front-end development occurs in parallel with back-end efforts. Imagine the following scenario:
 
-* you work on a Java API but you need to know how your colleagues working on front-end expect data from your API
+* you work on a Java API, but you need to know how your colleagues working on front-end expect data from your API
 * in the same time, your colleagues develop HTML, CSS, javascript files and need to be aware on how your API endpoints and data served by them would look like.
 
-To improve productivity of teams that work with different programming languages (Java, javascript),
+To improve productivity of teams that work with different programming languages (`Java`, `javascript`),
 would be great if both teams can access each others work without repetitive deployment. `jwebserver` can help you achieve this simple setup.
 
 **Your task** relies on you to do the following steps:
@@ -52,11 +66,11 @@ would be great if both teams can access each others work without repetitive depl
 
 ## **Lab Activity No 2**: Modify Server Code to Load Static Files
 
-In addition to a command-line tool, the Simple Web Server provides an API for programmatic creation and customization of the server and its components. 
+In addition to a command-line tool, the Simple Web Server provides an API for programmatic creation and customization of the server and its components.
 This API extends the `com.sun.net.httpserver` package. Moreover, the `HttpServer` API is capable of working with multiple handlers and sometimes
 is possible to combine a file handler with a canned response handler
 
-Let's evolve the previous scenario by integrating the client-side code. 
+Let's evolve the previous scenario by integrating the client-side code.
 **Your task** relies on you to do the following steps:
 
 1. Modify the code of `C_bday_jwebserver/src/main/java/eu/ammbra/bday/Organizer.java` to handle the content inside `static` folder.
@@ -77,8 +91,8 @@ The `HttpClient` API was added in Java 11 and you can use it to request HTTP res
 ```java
 HttpClient client = HttpClient.newHttpClient();
 HttpRequest request = HttpRequest.newBuilder()
-      .uri(URI.create("http://openjdk.org/"))
-      .build();
+        .uri(URI.create("http://openjdk.org/"))
+        .build();
 client.send(request, HttpResponse.BodyHandlers.ofString());
 ```
 
@@ -93,5 +107,3 @@ In **this activity** you will leverage the `HttpClient` API to create integratio
 &rarr; [Click to see the solution](SOLUTION.md#lab-activity-no-3-create-integration-tests-with-httpclient-api)
 
 Next, [let's create a minimal runtime for the application](../D_bday_jlink/README.md)!
-
-

@@ -1,6 +1,6 @@
 # Solutions to Generate Documentation with `javadoc`
 
-## **Lab Activity No 1**: Introduce a Code Snippet in JavaDoc Comments
+## **Lab Activity No 2**: Introduce a Code Snippet in JavaDoc Comments
 
 <details>
 <summary>Click to expand</summary>
@@ -69,7 +69,7 @@ public interface JsonLoader<T> {
 
 </details>
 
-## **Lab Activity No 2**: Reference the Code Snippet from a File
+## **Lab Activity No 3**: Reference the Code Snippet from a File
 
 <details>
 <summary>Click to expand</summary>
@@ -150,7 +150,7 @@ Modified test method:
 ```
 </details>
 
-## **Lab Activity No 3**: Utilize Markdown in JavaDoc Comments
+## **Lab Activity No 4**: Utilize Markdown in JavaDoc Comments
 
 <details>
 <summary>Click to expand</summary>
@@ -177,29 +177,29 @@ import java.util.List;
 ///
 public interface JsonLoader<T> {
 
-  ///Loads JSON store from a file into a list of objects.
-  ///
-  ///Below is how the JSON file should look like.
-  ///
-  ///{@snippet lang = JSON file = sample.json}
-  ///
-  ///@param filename the name of the file to load from
-  ///@param type     the type of store to load
-  ///@return an unmodifiable list of loaded objects
-  ///@throws IllegalArgumentException if an I/O error occurs while loading the file
-  ///
-  default List<T> loadJson(String filename, Type type) {
-    Gson gson = new GsonBuilder()
-            .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-            .create();
+	///Loads JSON store from a file into a list of objects.
+	///
+	///Below is how the JSON file should look like.
+	///
+	///{@snippet lang = JSON file = sample.json}
+	///
+	///@param filename the name of the file to load from
+	///@param type     the type of store to load
+	///@return an unmodifiable list of loaded objects
+	///@throws IllegalArgumentException if an I/O error occurs while loading the file
+	///
+	default List<T> loadJson(String filename, Type type) {
+		Gson gson = new GsonBuilder()
+				.registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+				.create();
 
-    try (Reader reader = new FileReader(filename)) {
-      List<T> json = gson.fromJson(reader, type);
-      return Collections.unmodifiableList(json);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Failed to load celebrations from file: " + filename, e);
-    }
-  }
+		try (Reader reader = new FileReader(filename)) {
+			List<T> json = gson.fromJson(reader, type);
+			return Collections.unmodifiableList(json);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Failed to load celebrations from file: " + filename, e);
+		}
+	}
 }
 ```
 

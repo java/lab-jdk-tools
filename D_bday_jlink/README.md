@@ -5,23 +5,24 @@
 Here's a breakdown of the different project components:
 
 * `src/main/java`: The source code for the project, organized by package:
-    * `eu.ammbra.bday.Organizer.java`: The main entry point of the application, possibly responsible for coordinating the overall flow of the program.
-    * `eu.ammbra.bday.details`: A package containing domain model classes. These classes represent entities involved in birthday celebrations, such as cakes, parties, and people attending them.
-    * `eu.ammbra.bday.handlers`: A package containing classes responsible for handling specific tasks. 
-    * `eu.ammbra.bday.operations`: A package containing classes responsible for handling the operational side of parties.
-    * `eu.ammbra.bday.store`: A package containing classes responsible for interacting with data from files.
+  * `eu.ammbra.bday.Organizer.java`: The main entry point of the application, possibly responsible for coordinating the overall flow of the program.
+  * `eu.ammbra.bday.details`: A package containing domain model classes. These classes represent entities involved in birthday celebrations, such as cakes, parties, and people attending them.
+  * `eu.ammbra.bday.handlers`: A package containing classes responsible for handling specific tasks.
+  * `eu.ammbra.bday.operations`: A package containing classes responsible for handling the operational side of parties.
+  * `eu.ammbra.bday.store`: A package containing classes responsible for interacting with data from files.
 * `src/main/resources/store/events.json`: A resource file containing sample event data in JSON format.
 * `static`: A folder holding client-side related static files.
 * `src/test/java`: The source code for unit tests and integration tests.
 * `src/snippets`: The JSON snippets folder.
 
+At any time, you can search or look on [https://dev.java/learn/jvm/tools/core/jlink/](https://dev.java/learn/jvm/tools/core/jlink/) to learn more about `jlink`.
 
 ## **Lab Activity No 1**: Analyze the Project's Dependencies with `jdeps`
 
 The `jdeps` tool analyzes your Java application’s dependencies and provides package or class level details, by identifying:
 
-* dependencies your project actively uses, 
-* transitive dependencies that your project indirectly relies on, 
+* dependencies your project actively uses,
+* transitive dependencies that your project indirectly relies on,
 * missing dependencies that can cause errors.
 
 To leverage `jdeps` you need either compiled Java classes (`.class` files) or a JAR file. **Your task** relies on you to do the following steps:
@@ -45,19 +46,19 @@ javac --enable-preview --source 23 -cp "../lib/*" @sourcefiles.txt -d out
 
 ```shell
 # unix/macOS specific command
-jdeps --class-path '../lib/*' --multi-release 23  -s out/
+jdeps --multi-release 23 --class-path '../lib/*' -s out/
 
 # Windows specific commands
-jdeps --class-path '..\lib\*' --multi-release 23 -s out\
+jdeps --multi-release 23 --class-path '..\lib\*' -s out\
 ```
 4. Observe the output of previous command and check if there are dependencies not found. In such scenarios, is best to scan recursively your files:
 
 ```shell
 # unix/macOS specific command
-jdeps --class-path '../lib/*' -recursive out/
+jdeps --multi-release 23 --class-path '../lib/*' -recursive out/
 
 # Windows specific commands
-jdeps --class-path '..\lib\*' -recursive out\
+jdeps --multi-release 23 --class-path '..\lib\*' -recursive out\
 ```
 5. To better observe the output, you can export the dependencies details as a DOT format.
 
@@ -105,9 +106,9 @@ jlink --add-modules java.base,java.net.http,java.sql,jdk.httpserver  --output ja
 jlink --add-modules java.base,java.net.http,java.sql,jdk.httpserver --output javaruntime
 ```
 
-2. Next, append the previous command with `--no-man-pages --no-header-files` options to exclude man pages and header files. 
-3. Finally, enable compression of resources through `--compress=zip-[0-9]`. This option configures the compression of the image, the higher the value the greater the compression. 
-Example compression levels:
+2. Next, append the previous command with `--no-man-pages --no-header-files` options to exclude man pages and header files.
+3. Finally, enable compression of resources through `--compress=zip-[0-9]`. This option configures the compression of the image, the higher the value the greater the compression.
+   Example compression levels:
 
 * `zip-0`: No compression
 * `zip-1`: Fastest compression
@@ -152,5 +153,3 @@ Let's deploy the frontend of the application using `jwebserver`. **Your task** r
 &rarr; [Click to see the solution](SOLUTION.md#lab-activity-no-4-separate-deployments-of-frontend-and-backend)
 
 Next, [let's analyze the performance of the application](../E_bday_jfr/README.md)!
-
-

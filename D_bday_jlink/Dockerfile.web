@@ -1,5 +1,5 @@
 # Step 1: Build the custom Java runtime
-FROM container-registry.oracle.com/java/openjdk:23-oraclelinux9 as jre-build
+FROM container-registry.oracle.com/java/openjdk:25-oraclelinux9 as jre-build
 
 RUN $JAVA_HOME/bin/jlink \
 --add-modules jdk.compiler,jdk.httpserver \
@@ -12,7 +12,7 @@ RUN $JAVA_HOME/bin/jlink \
 FROM oraclelinux:9-slim
 
 # Set Java environment variables
-ENV JAVA_HOME /usr/java/openjdk-23
+ENV JAVA_HOME /usr/java/openjdk-25
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # Copy the custom Java runtime from the first stage
