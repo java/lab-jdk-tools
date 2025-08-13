@@ -14,6 +14,7 @@ Here's a breakdown of the different project components:
 * `src/test/java`: The source code for unit tests and integration tests.
 * `src/snippets`: The JSON snippets folder.
 
+At any time, you can search or look on [https://dev.java/learn/jvm/jfr/](https://dev.java/learn/jvm/jfr/) to learn more about JDK Flight Recorder.
 
 ## **Lab Activity No 1**: Inspect Application Behavior without Dumping Data
 
@@ -87,6 +88,7 @@ Next, let's see how you can filter recorded data in a file.
 > ⚠️ If your terminal is unaware of `jfr`, you may invoke it through `$JAVA_HOME/bin/jfr`. All JDK tools are executable from JDK's `bin` folder.
 
 The `jfr scrub` command is useful to remove sensitive information from JFR recordings. When sharing JFR files is good to ensure that personally identifiable information (PII), security-sensitive data, or environment-specific details are removed.
+In JDK 25, the `jfr scrub` command also prints the number of events that were removed, making it easier to verify the amount of sensitive information has been taken out.
 
 ```shell
 jfr scrub [filters] [recording-file] [output-file]
@@ -118,29 +120,88 @@ jfr scrub --include-events "FileRead" --exclude-threads '*metadata*' record-scru
 ```
 
 5. Print the events from `record-scrubbed.jfr` and see if the recording is clean according to commands given previously.
+As of JDK 25, you can find out timestamps, timespans, and memory data with full precision by appending  `--exact` option to your `jfr print command`.
 
 ```shell
 jfr print --events record-scrubbed.jfr
 ```
+
 6. Finally, stop the JFR recording by executing:
 
 ```shell
 jcmd PID JFR.stop name=1
 ```
 
-## **Lab Activity No 3**: Control JFR Recording in a Containerized Application
+## **Lab Activity No 3**: How the New JFR Cooperative Sampling Works
+
+Java 25 improves the stability of the JDK Flight Recorder (JFR) by changing how it samples Java thread stacks for profiling. Previously, JFR used asynchronous stack sampling at arbitrary code locations (non-safepoints), relying on heuristics to reconstruct stack traces.
+These heuristics were complex and could sometimes cause JVM crashes, especially during class unloading. To eliminate this risk, starting with JDK 25, JFR samples stacks only at safepoints, where reliable metadata exists.
+
+Furthermore, to avoid safepoint bias (e.g., when intrinsics replace Java code), which can miss frequently executed code between safepoints, JFR adopts a cooperative sampling model.
+When sampling is triggered, the sampler thread records only minimal information (program counter and stack pointer), queues a sample request, and lets the target thread handle stack trace reconstruction at its next safepoint. This ensures both safe and accurate sampling without relying on risky heuristics.
+A new `jdk.SafepointLatency` event has been added to JFR, enabling fine-grained visibility into how long threads take to reach safepoints.
+
+**Your task** involves enabling `jdk.SafepointLatency` event when you launch your application and keep the recording alive for 1 minute.
+
+```shell
+java -XX:StartFlightRecording:jdk.SafepointLatency#enabled=true,filename=recording.jfr
+```
+
+Once the recording stopped, use `jfr print` command to check the duration of `jdk.SafepointLatency` events captured in the recording file.
+
+## **Lab Activity No 4**: Timing and Tracing Method Invocations
+
+Timing and tracing method invocations can help identify performance bottlenecks, optimize code, and find the root causes of bugs.
+Starting with JDK 25, you can use two JFR events to time and trace method invocations:
+
+* `jdk.MethodTiming` that tracks invocation count and execution time (min/avg/max) for specified methods.
+* `jdk.MethodTrace` that records stack traces and duration for each invocation.
+
+For each of these JFR events you can specify filters for methods, classes, or annotations using command-line arguments, JFR configuration files, or remotely via JMX.
+
+```shell
+jcmd PID JFR.start method-timing=com.sun.net.httpserver.HttpHandler::handle;java.io.FileDescriptor::close
+
+java -XX:StartFlightRecording:jdk.MethodTrace#filter=com.sun.net.httpserver.HttpHandler::handle,filename=rec.jfr
+```
+Additionally, Java 25 enhances `-XX:StartFlightRecording` option with a new sub-option `report-on-exit` that prints a report/view when the JVM exits.
+
+Let's checkout how you can use these new events for timing and tracing method invocations for `organizer` application. 
+**Your task** consists of going through the following steps:
+
+1. Use `jfr configure  --interactive` command to create your custom JFR profile. 
+2. Search for `jdk.MethodTrace` and `jdk.MethodTiming` events and check if they are enabled.
+3. Launch `Organizer` application from `src/main/java/eu/ammbra/bday/` and using the custom profile you just created. 
+
+```shell
+java -XX:StartFlightRecording:settings=custom.jfc,duration=60s,filename=rec.jfr,report-on-exit=method-timing 
+```
+4. Make a few calls to the API in order to sample some events in your recording file.
+5. Once the recording ends, inspect the file with `jfr print` or `jfr view all-events` commands.
+
+## **Lab Activity No 5**: Control JFR Recording in a Containerized Application
+
+JDK 25 introduces experimental support for CPU-time profiling in JDK Flight Recorder (JFR) on Linux using the Linux kernel’s CPU timer. 
+This enhances profiling accuracy by sampling threads based on actual CPU usage rather, overcoming limitations of JFR’s current execution-time sampler, which may miss threads in native code or underrepresent short runs.
+
+The new event `jdk.CPUTimeSample` is not enabled by default and captures stack traces of Java threads at regular CPU-time intervals, ensuring better accuracy.
+
+```shell
+jfr configure jdk.CPUTimeSample#enabled=true
+```
 
 Let's investigate how you can record application behavior from an already running container.
 
 1. Open a terminal window at the root of the `lab-jdk-tools` folder, where the [`Dockerfile`](../Dockerfile) resides.
 2. Modify the `Dockerfile` by adding two more modules `jdk.jcmd,jdk.jfr` to the `jlink` command. Your application needs these modules in order to perceive `jcmd` or `jfr` commands.
-3. Launch application via the command `docker-compose up --build` from the `lab-jdk-tools` folder.
-4. The container that corresponds `Organizer` application has the name `organizer` (see `` in `compose.yaml`). Start a jfr recording that lasts 60 seconds for this containerized application:
+3. Launch the application via the command `docker-compose up --build` from the `lab-jdk-tools` folder.
+4. The container that corresponds to `Organizer` application has the name `organizer` (see `container_name` in `compose.yaml`). 
+5. Start a jfr recording that lasts 60 seconds for this containerized application:
 
 ```shell
-docker exec -d -it organizer sh -c "jcmd 1 JFR.start duration=60s filename=../recordings/recording.jfr"
+docker exec -d -it organizer sh -c "jcmd 1 JFR.start settings=custom.jfc duration=60s filename=../recordings/recording.jfr"
 ```
-5. Once the recording has finished, you can inspect the file with the commands you learned in previous activities.
+6. Once the recording has finished, you can inspect the file with the commands you learned in previous activities.
 
 Congratulations! You finished the lab! 
 

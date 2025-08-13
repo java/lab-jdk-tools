@@ -1,6 +1,6 @@
 # Solutions to Generate Documentation with `javadoc`
 
-## **Lab Activity No 1**: Introduce a Code Snippet in JavaDoc Comments
+## **Lab Activity No 2**: Introduce a Code Snippet in JavaDoc Comments
 
 <details>
 <summary>Click to expand</summary>
@@ -69,7 +69,7 @@ public interface JsonLoader<T> {
 
 </details>
 
-## **Lab Activity No 2**: Reference the Code Snippet from a File
+## **Lab Activity No 3**: Reference the Code Snippet from a File
 
 <details>
 <summary>Click to expand</summary>
@@ -150,7 +150,7 @@ Modified test method:
 ```
 </details>
 
-## **Lab Activity No 3**: Utilize Markdown in JavaDoc Comments
+## **Lab Activity No 4**: Utilize Markdown in JavaDoc Comments
 
 <details>
 <summary>Click to expand</summary>

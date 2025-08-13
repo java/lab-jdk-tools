@@ -5,7 +5,7 @@ JDK Tools Lab
 
 This lab explores the latest features of the JDK tools and how to combine them in development:
 
-1. Understand the latest features **java** launcher
+1. Understand the latest features of the **java** launcher
 2. Use **javadoc** tool and its type of comments
 3. Leverage **jwebserver** tool and `SimpleFileServer` API
 4. Analyze dependencies with **jdeps** and produce minimal runtimes with **jlink**.
@@ -15,7 +15,7 @@ Each part is implemented in its own module, so that you can follow one or the ot
 
 ## Prerequisites 
 
-* JDK 23 minimum installed and configured. If you do not have it installed, please obtain one from https://jdk.java.net/23/
+* JDK 25 minimum installed and configured. If you do not have it installed, please obtain one from https://jdk.java.net/25/
 and follow JDK setup steps from here https://dev.java/learn/getting-started/#setting-up-jdk. Check your Java version setup with:
 
 ```shell

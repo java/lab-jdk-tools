@@ -15,6 +15,7 @@ Here's a breakdown of the different project components:
 * `src/test/java`: The source code for unit tests and integration tests.
 * `src/snippets`: The JSON snippets folder.
 
+At any time, you can search or look on [https://dev.java/learn/jvm/tool/jwebserver/](https://dev.java/learn/jvm/tool/jwebserver/) to learn more about `jwebserver`.
 
 ## **Lab Activity No 1**: Simulate a client-server setup
 
@@ -23,12 +24,25 @@ JDK 18 introduced the `SimpleFileServer` API and added it to the `jdk.httpserver
 You can run the simple web server in the command line with the `jwebserver` JDK tool.
 [Jwebserver](https://docs.oracle.com/en/java/javase/23/docs/specs/man/jwebserver.html) serves static files in a single directory hierarchy over HTTP/1.1; dynamic content and other HTTP versions are not supported. 
 
+Starting with JDK 25 the `jwebserver` tool allows configuring the directory to serve as a one specified with a relative path via the `-d` and `--directory` command line options. 
+You can achieve that both when you invoke `jwebserver` an executable:
+
+```
+jwebserver --directory a/relative/path
+```
+
+or as a module:
+
+```
+java --module jdk.httpserver --directory a/relative/path
+```
+
 Often times, front-end development occurs in parallel with back-end efforts. Imagine the following scenario:
 
-* you work on a Java API but you need to know how your colleagues working on front-end expect data from your API
+* you work on a Java API, but you need to know how your colleagues working on front-end expect data from your API
 * in the same time, your colleagues develop HTML, CSS, javascript files and need to be aware on how your API endpoints and data served by them would look like.
 
-To improve productivity of teams that work with different programming languages (Java, javascript),
+To improve productivity of teams that work with different programming languages (`Java`, `javascript`),
 would be great if both teams can access each others work without repetitive deployment. `jwebserver` can help you achieve this simple setup.
 
 **Your task** relies on you to do the following steps:

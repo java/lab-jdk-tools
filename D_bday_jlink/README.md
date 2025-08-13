@@ -15,6 +15,7 @@ Here's a breakdown of the different project components:
 * `src/test/java`: The source code for unit tests and integration tests.
 * `src/snippets`: The JSON snippets folder.
 
+At any time, you can search or look on [https://dev.java/learn/jvm/tools/core/jlink/](https://dev.java/learn/jvm/tools/core/jlink/) to learn more about `jlink`.
 
 ## **Lab Activity No 1**: Analyze the Project's Dependencies with `jdeps`
 
