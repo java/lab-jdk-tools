@@ -8,10 +8,10 @@
 After running:
 ```shell
 # unix/macOS specific command
-jdeps --class-path '../lib/*' --ignore-missing-deps --print-module-deps --multi-release 23 out/
+jdeps --class-path '../lib/*' --ignore-missing-deps --print-module-deps --multi-release 25 out/
 
 # Windows specific commands
-jdeps --class-path '..\lib\*' --ignore-missing-deps --print-module-deps --multi-release 23 out/
+jdeps --class-path '..\lib\*' --ignore-missing-deps --print-module-deps --multi-release 25 out/
 ```
 
 the output should be:
@@ -41,10 +41,10 @@ jlink --add-modules java.base,java.net.http,java.sql,jdk.httpserver --no-man-pag
 
 ```dockerfile
 # Define your base image
-FROM container-registry.oracle.com/java/openjdk:23-oraclelinux9 as jre-build
+FROM container-registry.oracle.com/java/openjdk:25-oraclelinux9 as jre-build
 
 RUN $JAVA_HOME/bin/jlink \
---add-modules jdk.compiler,java.base,java.net.http,java.sql,jdk.httpserver\
+--add-modules jdk.compiler,java.base,java.net.http,java.sql,jdk.httpserver \
 --no-man-pages \
 --no-header-files \
 --compress=zip-9 \
@@ -53,7 +53,7 @@ RUN $JAVA_HOME/bin/jlink \
 # Define your base image
 FROM oraclelinux:9-slim
 
-ENV JAVA_HOME /usr/java/openjdk-23
+ENV JAVA_HOME /usr/java/openjdk-25
 ENV PATH $JAVA_HOME/bin:$PATH
 COPY --from=jre-build /javaruntime $JAVA_HOME
 
