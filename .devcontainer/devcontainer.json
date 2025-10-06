@@ -1,0 +1,29 @@
+{
+  "name": "Java 25 Development",
+  "image": "container-registry.oracle.com/java/openjdk:25-oraclelinux9",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "oracle.oracle-java"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-25",
+            "path": "/usr/java/openjdk-25",
+            "default": true
+          }
+        ]
+      }
+    }
+  },
+  
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  
+  "postCreateCommand": "java -version",
+  
+  "remoteUser": "root"
+}
