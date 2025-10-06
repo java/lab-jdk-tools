@@ -34,40 +34,40 @@ To leverage `jdeps` you need either compiled Java classes (`.class` files) or a 
 # Windows specific commands to get Java files from current directory
 dir /s /B *.java > sourcefiles.txt
 
-javac --enable-preview  --source 23 -cp "..\lib\*" @sourcefiles.txt -d out
+javac --enable-preview  --source 25 -cp "..\lib\*" @sourcefiles.txt -d out
 
 # unix/macOS specific commands to get Java files from current directory
 
 find . -name "*.java" > sourcefiles.txt
 
-javac --enable-preview --source 23 -cp "../lib/*" @sourcefiles.txt -d out
+javac --enable-preview --source 25 -cp "../lib/*" @sourcefiles.txt -d out
 ```
 3. Get a summary of your dependencies by running:
 
 ```shell
 # unix/macOS specific command
-jdeps --multi-release 23 --class-path '../lib/*' -s out/
+jdeps --multi-release 25 --class-path '../lib/*' -s out/
 
 # Windows specific commands
-jdeps --multi-release 23 --class-path '..\lib\*' -s out\
+jdeps --multi-release 25 --class-path '..\lib\*' -s out\
 ```
 4. Observe the output of previous command and check if there are dependencies not found. In such scenarios, is best to scan recursively your files:
 
 ```shell
 # unix/macOS specific command
-jdeps --multi-release 23 --class-path '../lib/*' -recursive out/
+jdeps --multi-release 25 --class-path '../lib/*' -recursive out/
 
 # Windows specific commands
-jdeps --multi-release 23 --class-path '..\lib\*' -recursive out\
+jdeps --multi-release 25 --class-path '..\lib\*' -recursive out\
 ```
 5. To better observe the output, you can export the dependencies details as a DOT format.
 
 ```shell
 # unix/macOS specific command
-jdeps --class-path '../lib/*' --dot-output graph --ignore-missing-deps --multi-release 23 -recursive out/
+jdeps --class-path '../lib/*' --dot-output graph --ignore-missing-deps --multi-release 25 -recursive out/
 
 # Windows specific commands
-jdeps --class-path '..\lib\*' --dot-output graph --ignore-missing-deps --multi-release 23 -recursive out\
+jdeps --class-path '..\lib\*' --dot-output graph --ignore-missing-deps --multi-release 25 -recursive out\
 ```
 With tools like https://graphviz.org/ you can visualize the dependencies in a `.PNG` or `.SVG` file.
 ![](summary.png)
@@ -76,10 +76,10 @@ With tools like https://graphviz.org/ you can visualize the dependencies in a `.
 
 ```shell
 # unix/macOS specific command
-jdeps --class-path '../lib/*' --ignore-missing-deps --print-module-deps --multi-release 23 out/
+jdeps --class-path '../lib/*' --ignore-missing-deps --print-module-deps --multi-release 25 out/
 
 # Windows specific commands
-jdeps --class-path '..\lib\*' --ignore-missing-deps --print-module-deps --multi-release 23 out/
+jdeps --class-path '..\lib\*' --ignore-missing-deps --print-module-deps --multi-release 25 out/
 ```
 
 Next, let's make sure our application uses the right dependencies.
