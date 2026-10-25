@@ -21,9 +21,9 @@ public class PartyService {
      ///
     private final DataStore dataStore;
 
-     ///Constructs a new PartyService instance with the specified store store.
+     ///Constructs a new PartyService instance with the specified data store.
      ///
-     ///@param dataStore the store store instance
+     ///@param dataStore the data store instance
      ///
 	 public PartyService(DataStore dataStore) {
         this.dataStore = dataStore;

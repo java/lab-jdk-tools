@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
-///Handles HTTP requests for party-related store.
+///Handles HTTP requests for party-related data.
 ///
 public class PartyHandler implements HttpHandler {
 
@@ -29,7 +29,7 @@ public class PartyHandler implements HttpHandler {
 	}
 
 
-	///Handles an HTTP request for party-related store.
+	///Handles an HTTP request for party-related data.
 	///
 	/// @param exchange the HTTP exchange object
 	 /// @throws IOException if an I/O error occurs
